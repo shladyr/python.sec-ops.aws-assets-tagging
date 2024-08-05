@@ -1,0 +1,7 @@
+name: Workflow - Build Unit Tests Env
+
+on:
+  push:
+    branches-ignore:
+      - master            # This will ignore pushes to the master branch
+  workflow_dispatch:      # This allows you to manually trigger the workflow.
