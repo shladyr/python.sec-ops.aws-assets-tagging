@@ -1,0 +1,50 @@
+Hello
+
+As DevOps Engineer you need to create a solution for automatic aws assets tagging.
+The aim of this task is to meet SOC-2 requirements.
+Basically, it means creating a script.
+The script will be running in Aws Lambda environment.
+Aws assets should tagged in all Data Centers of the specified Aws Account.
+The script uses Boto3 to interact with AWS services.
+
+The script uses DynamoDB tables to store metadata related to AWS resources that are being tagged.
+(attributes, user/group information, and tag values).
+This can be useful for auditing, reporting, and ensuring SOC-2 compliance.
+Specifically, store tag history, resource metadata, and user actions.
+
+The script includes error handling for various operations, ensuring that the operations are idempotent.
+If any issue has happened then alert should be sent to Aws Cloudwatch or Aws SNS.
+
+For writing script please use the next Best Practices and Features:
+- Modular Design
+- Error Handling
+- Logging
+- Configuration Management
+- Parameterization
+- Idempotency
+- Security
+- Docstrings and Inline Comments
+- Unit Tests
+- Code Quality: PEP 8 Compliance, Linting, Type Annotations
+- Requirements File
+- Unit Tests
+
+Please generate the script and unit tests in Python language.
+Please generate the script and unit tests in Rust language.
+Please generate the script and unit tests in Go language.
+Please generate the script and unit tests in TypeScript language.
+
+Please generate Planning for realising this project in markdown format.
+Please generate Technical requirements in markdown format.
+Please generate Technical specification in markdown format.
+Please generate Technical documentation in markdown format.
+Please generate README in markdown format.
+
+Please generate Component Diagram in PlantUML format, add color.
+Please generate Flow Diagram in PlantUML format, add color.
+Please generate Architecture Diagram in PlantUML format, add color.
+Please generate Sequence Diagram in PlantUML format, add color.
+Please generate Entity-Relationship Diagram in PlantUML format, add color.
+Please generate Communication Diagram in PlantUML format, add color.
+Please generate Activity Diagram in PlantUML format, add color.
+
