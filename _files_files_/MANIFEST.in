@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include config.ini
+include requirements.txt
+include .coveragerc
+include .editorconfig
+include .readthedocs.yaml
+include CODEOFCONDUCT.md
+include CONTRIBUTING.md
