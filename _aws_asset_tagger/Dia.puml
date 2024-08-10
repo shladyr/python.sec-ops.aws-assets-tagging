@@ -1,0 +1,66 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam component {
+    BackgroundColor<<aws_clients>> LightGreen
+    BackgroundColor<<resources>> LightBlue
+    BackgroundColor<<utils>> LightYellow
+    BackgroundColor<<main>> LightCyan
+    BackgroundColor<<config>> LightGrey
+}
+
+package "aws_asset_tagger" <<main>> {
+
+    [main.py] <<main>>
+    [aws_clients] <<aws_clients>>
+    [resources] <<resources>>
+    [utils] <<utils>>
+    [config.py] <<config>>
+}
+
+package "aws_clients" <<aws_clients>> {
+    [dynamodb_client.py] <<aws_clients>>
+    [ec2_client.py] <<aws_clients>>
+    [s3_client.py] <<aws_clients>>
+    [cloudwatch_client.py] <<aws_clients>>
+
+    [aws_clients] --> [dynamodb_client.py]
+    [aws_clients] --> [ec2_client.py]
+    [aws_clients] --> [s3_client.py]
+    [aws_clients] --> [cloudwatch_client.py]
+}
+
+package "resources" <<resources>> {
+    [fetcher.py] <<resources>>
+    [processor.py] <<resources>>
+
+    [resources] --> [fetcher.py]
+    [resources] --> [processor.py]
+}
+
+package "utils" <<utils>> {
+    [logger.py] <<utils>>
+    [alert.py] <<utils>>
+    [user_info.py] <<utils>>
+
+    [utils] --> [logger.py]
+    [utils] --> [alert.py]
+    [utils] --> [user_info.py]
+}
+
+[main.py] --> [aws_clients]
+[main.py] --> [resources]
+[main.py] --> [utils]
+[main.py] --> [config.py]
+
+[fetcher.py] --> [ec2_client.py]
+[fetcher.py] --> [s3_client.py]
+[processor.py] --> [dynamodb_client.py]
+[processor.py] --> [ec2_client.py]
+[processor.py] --> [s3_client.py]
+[processor.py] --> [config.py]
+[processor.py] --> [logger.py]
+[processor.py] --> [user_info.py]
+[alert.py] --> [cloudwatch_client.py]
+[alert.py] --> [logger.py]
+
+@enduml

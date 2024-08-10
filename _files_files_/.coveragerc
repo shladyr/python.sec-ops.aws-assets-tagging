@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = aws_tagging_tool
+
+[report]
+show_missing = True
+skip_covered = True
