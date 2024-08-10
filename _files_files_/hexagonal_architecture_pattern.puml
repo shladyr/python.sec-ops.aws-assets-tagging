@@ -1,0 +1,67 @@
+@startuml
+skinparam backgroundColor #f5f5f5
+
+' Define colors for different components
+skinparam package {
+    BackgroundColor<<Domain Layer>> LightBlue
+    BorderColor<<Domain Layer>> DarkSlateGray
+
+    BackgroundColor<<Application Layer>> LightGreen
+    BorderColor<<Application Layer>> DarkGreen
+
+    BackgroundColor<<Adapters>> LightGoldenRodYellow
+    BorderColor<<Adapters>> DarkGoldenRod
+
+    BackgroundColor<<AWS Adapters>> PaleTurquoise
+    BorderColor<<AWS Adapters>> DarkCyan
+
+    BackgroundColor<<Infrastructure Adapters>> MistyRose
+    BorderColor<<Infrastructure Adapters>> Chocolate
+
+    BackgroundColor<<External Interfaces>> LightCoral
+    BorderColor<<External Interfaces>> DarkSalmon
+}
+
+package "Domain Layer" <<Rectangle>> {
+    [Tagging Service] <<Entity>> #ADD8E6
+    [Metadata Store] <<Entity>> #ADD8E6
+}
+
+package "Application Layer" <<Rectangle>> {
+    [Tagging Use Case] <<Use Case>> #90EE90
+    [Metadata Use Case] <<Use Case>> #90EE90
+}
+
+package "Adapters" <<Rectangle>> {
+    package "AWS Adapters" <<Rectangle>> {
+        [AWS SDK Adapter] <<Component>> #AFEEEE
+        [DynamoDB Adapter] <<Component>> #AFEEEE
+    }
+
+    package "Infrastructure Adapters" <<Rectangle>> {
+        [Logging Adapter] <<Component>> #FFE4E1
+        [Config Adapter] <<Component>> #FFE4E1
+    }
+
+    package "External Interfaces" <<Rectangle>> {
+        [Lambda Handler] <<Component>> #F08080
+    }
+}
+
+' Application Layer interacts with Domain Layer
+[Tagging Use Case] --> [Tagging Service]
+[Metadata Use Case] --> [Metadata Store]
+
+' External Interfaces interact with Application Layer
+[Lambda Handler] --> [Tagging Use Case]
+[Lambda Handler] --> [Metadata Use Case]
+
+' AWS Adapters interact with Domain Layer
+[AWS SDK Adapter] --> [Tagging Service]
+[DynamoDB Adapter] --> [Metadata Store]
+
+' Infrastructure Adapters interact with Application Layer
+[Logging Adapter] --> [Tagging Use Case]
+[Config Adapter] --> [Metadata Use Case]
+
+@enduml
